@@ -1,0 +1,21 @@
+rpc (remote procedure call) 远程调用  rpc 架构 	
+
+1.client端     进程A发起情求 ，把请求数据存入本地缓冲 等待
+  client-stub  检测到进程A的缓冲中数据后，
+  						 读出数据连同需要调用的函数AddinBasket函数名一起建立一个数据包
+  						 发送给服务器端的server－stub程序 
+2.服务端的 server-stub 收到发来的数据包，打开数据包读出数据存入缓冲，
+  处理程序B检测到数据后，调用相应的请求方法处理数据，将结果存入缓冲 
+  server-stub 检测到数据后封装响应数据包，发送给client-stub  
+  
+3.client端，client－stub接收到数据包，
+            从中读取出处理结果的数据，
+            保存到client端的内存中并通知进程A数据处理完毕。进程A从内存中读取结果
+            
+REST（Representational Status Transfer） 架构
+实现原理
+下载服务器端的当前状态，
+修改之后将最终用户所期待的状态发送给服务器，
+服务器按照客户的期待进行修改。
+而不同于RPC的也就是响应函数没有那么多的，复杂的逻辑关系，函数也减少了很多，只是get和post两个
+简单理解： URL定位资源，用HTTP动词（GET,POST,DELETE,DETC）描述操作。
